@@ -184,6 +184,63 @@ docker run --rm -it \
   rl-verif-env
 ```
 
+## Export and Compress the Docker Image
+
+After building the Docker image, you can export and compress it so it can be stored, backed up, or transferred to another machine.
+
+### Save and compress with gzip
+
+```bash
+docker save rl-verif-env:latest | gzip > rl-verif-env.tar.gz
+```
+
+This creates:
+
+```text
+rl-verif-env.tar.gz
+```
+
+Check the compressed file size:
+
+```bash
+ls -lh rl-verif-env.tar.gz
+```
+
+To load the image again:
+
+```bash
+gunzip -c rl-verif-env.tar.gz | docker load
+```
+
+### Save with stronger xz compression
+
+For a smaller archive, use:
+
+```bash
+docker save rl-verif-env:latest | xz -T0 -9 > rl-verif-env.tar.xz
+```
+
+Explanation:
+
+* `docker save` exports the Docker image.
+* `xz` compresses the exported image.
+* `-T0` uses all available CPU cores.
+* `-9` uses maximum compression.
+
+Check the archive:
+
+```bash
+ls -lh rl-verif-env.tar.xz
+```
+
+To restore the image:
+
+```bash
+xz -dc rl-verif-env.tar.xz | docker load
+```
+
+`xz` usually produces a smaller file than `gzip`, but compression takes longer.
+
 
 ## Author
 
