@@ -1,0 +1,12 @@
+# Open-source verification framework
+cocotb==1.8.1
+cocotb-test==0.2.4
+cocotb-coverage==1.1.0
+
+# Machine Learning & Math
+torch==2.1.0
+stable-baselines3==2.1.0
+numpy==1.26.0
+
+# RISC-V specific tools
+riscv-isac==0.18.0
